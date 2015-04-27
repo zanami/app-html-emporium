@@ -1,7 +1,137 @@
-@import "vendor/normalize";
+@import "modules/normalize";
 
 @import "bourbon";
-@import "neat";
+@import "susy";
 @import "base/base";
 
 @import "global";
+@import "modules/owl-carousel";
+@import "modules/owl-theme";
+
+@import "modules/page-footer";
+@import "modules/page-shops";
+@import "modules/page-rent";
+@import "modules/sliding-panel";
+
+$gutters: (1/4);
+$susy: (
+    columns: 12,
+    gutters: $gutters,
+    math: fluid,
+    output: float,
+    gutter-position: inside,
+);
+
+// owl stuff
+
+//@import "styles"
+
+section.intro {
+	color: white;
+	height: 100%;
+	padding: 0;
+	
+	h1 {
+	  text-align: center;
+	  color: white;
+	  padding-bottom: .5em;
+	}
+	
+	h2 {
+	  text-align: center;
+	  font-size: 1.2em;
+	  padding: 0 15%;
+		text-transform: uppercase; 
+	}
+	
+	.image-bg {
+		background: url('../images/fasad.jpg') 0 0 no-repeat;
+		background-size: cover;
+	}
+	
+	a.jump-down {
+	  position: absolute;
+	  bottom: 4em;
+	  left: 20%;
+	  right: 20%;
+	  margin: 2em auto 0;
+	  display: block;
+	  width: 4em;
+	  text-align: center;
+		i {
+		  color: white;
+		  opacity: 0.5;
+		  font-size: 3.5em;
+		  text-align: center;
+		  transition: opacity 0.2s;
+		}
+	}
+	
+	.container {
+		@include susy-media(30em) {
+		  position: relative;
+		  top: 50%;
+		  transform: translateY(-50%);
+			-webkit-transform: translateY(-50%);
+		}
+	}
+}
+
+/// FEATURES
+
+.feature-item {
+  text-align: center;
+  padding: 2em 0 2em;
+	@include susy-media(60em) {
+		@include gallery(6 of 12);
+	}
+	@include susy-media(90em) {
+		@include gallery(4 of 12);
+	}
+  h4 {
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  p {
+    font-size: small;
+  }
+}
+
+.feature-item {
+  i {
+ 	font-size: 4em;
+ 	color: #bbb;
+ 	margin-bottom: .3em;
+ 	transition: color .2s; 
+ }
+ &:hover i {
+	 color: $accent-color;
+ };
+}
+
+/// QUOTES
+
+section.quote {
+  text-align: center;
+  padding: 4em 0;
+
+  blockquote {
+    font-style: normal;
+    color: white;
+    font-size: 2em;
+    margin: 0;
+    border: 0;
+    padding-left: 0;
+    cursor: move; 
+  }
+  cite {
+    padding-top: 1.5em;
+    font-size: 1em;
+    color: white;
+    display: block; 
+    &::before {
+      content: '\2014 \00A0'; 
+    };
+  }
+  
+}

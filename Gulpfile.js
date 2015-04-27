@@ -1,17 +1,23 @@
+
 var gulp = require('gulp'),
   browsersync = require('browser-sync'),
   include = require('gulp-include'),
   concat = require('gulp-concat'),
   haml = require('gulp-ruby-haml'),
-  sass = require('gulp-ruby-sass'),
-  neat = require('node-neat').includePaths,
+  sass = require('gulp-sass'),
+  bourbon = require('node-bourbon').includePaths,
+// not needed really
+//  susy = require('susy'),
   sourcemaps = require('gulp-sourcemaps'),
   coffee = require('gulp-coffee'),
   deploy = require('gulp-gh-pages');
+	var uglify = require('gulp-uglify');
+	var rename = require('gulp-rename');
 
 var paths = {
   haml: './source/views/*.haml',
   coffee: './source/assets/javascripts/**/*.coffee',
+  js: './source/assets/javascripts/**/*.js',
   scss: './source/assets/stylesheets/**/*.scss',
   images: './source/assets/images/*',
   fonts: './source/assets/fonts/*'
@@ -28,18 +34,36 @@ gulp.task('views', function () {
 gulp.task('stylesheets', function() {
   return gulp.src(paths.scss)
     .pipe(sass({
-      loadPath: [paths.scss].concat(neat)
+      loadPath: [paths.scss].concat(bourbon).concat('./node_modules/susy/sass'),
+      includePaths: [paths.scss].concat('./node_modules/susy/sass').concat(bourbon),
+      onError: console.error.bind(console, 'Sass error:'),
+//			,
+//			includePaths: [
+//			                './node_modules/susy/sass'
+//			]
     }))
     .pipe(gulp.dest('./build/assets/stylesheets'));
 });
 
 // Coffeescript
-gulp.task('javascripts', function() {
+gulp.task('coffeescripts', function() {
   return gulp.src(paths.coffee)
     .pipe(sourcemaps.init())
     .pipe(include())
     .pipe(coffee())
     .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./build/assets/javascripts'));
+});
+
+// Javascripts
+gulp.task('javascripts', function() {
+  return gulp.src(paths.js)
+	  // Concatenate everything within the JavaScript folder.
+	  .pipe(concat('scripts.js'))
+	  .pipe(gulp.dest('./build/assets/javascripts'))
+	  .pipe(rename('scripts.min.js'))
+	  // Minify the JavaScript.
+//	  .pipe(uglify())
     .pipe(gulp.dest('./build/assets/javascripts'));
 });
 
@@ -73,7 +97,7 @@ gulp.task('server', function() {
 gulp.task('watch', function() {
   gulp.watch(paths.haml, ['views']);
   gulp.watch(paths.scss, ['stylesheets']);
-  gulp.watch(paths.coffee, ['javascripts']);
+  gulp.watch(paths.coffee, ['coffeescripts', 'javascripts']);
   gulp.watch(paths.images, ['images']);
   gulp.watch(paths.fonts, ['fonts']);
   gulp.watch('./build/*.html', browsersync.reload);
@@ -84,7 +108,7 @@ gulp.task('watch', function() {
 });
 
 // Run
-gulp.task('default', ['views', 'stylesheets', 'javascripts', 'images', 'fonts', 'server', 'watch'], function() {
+gulp.task('default', ['views', 'stylesheets', 'javascripts', 'coffeescripts', 'images', 'fonts', 'server', 'watch'], function() {
 
 });
 

@@ -1,0 +1,39 @@
+
+.shops {
+
+  $large-screen: em(860) !default;
+  text-align: center;
+	background: #efefcc;
+  padding: 3em 0 3em;
+
+  .logos {
+    position: absolute;
+    display:none;
+    left: 0;
+    bottom: 0;
+  	background: #fff url('../images/bg-shops-logos.jpg') 0 50% repeat-x;
+    height: 100px;
+    width: 100%;
+  }
+  
+  .row {
+    @include break;
+    @include clearfix;
+    margin-bottom: 1em;
+  }
+  .stage, .stage-title {
+    @include susy-media($large-screen) {
+      @include span (3 of 12);
+      &.last {
+        @include last;
+      }
+    }
+  }
+  ul {
+    margin-bottom: 1em;
+  }
+  li {
+    font-size: small;
+  }
+  
+}

@@ -1,9 +1,10 @@
 // Typography
-$base-font-family: $helvetica;
+$base-font-family: 'Roboto Slab', $helvetica;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
 $base-font-size: 1em;
+$medium-screen: em(640) !default;
 
 // Line height
 $base-line-height: 1.5;
@@ -19,7 +20,9 @@ $base-z-index: 0;
 $blue: #477dca;
 $dark-gray: #333;
 $medium-gray: #999;
-$light-gray: #ddd;
+$light-gray: #efefef;
+// Custom
+$accent-color: #dc2055;
 
 // Font Colors
 $base-background-color: #fff;
