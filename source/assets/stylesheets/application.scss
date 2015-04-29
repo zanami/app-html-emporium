@@ -11,6 +11,7 @@
 @import "modules/page-footer";
 @import "modules/page-shops";
 @import "modules/page-rent";
+@import "modules/page-history";
 @import "modules/sliding-panel";
 
 $gutters: (1/4);
@@ -45,7 +46,7 @@ section.intro {
 	}
 	
 	.image-bg {
-		background: url('../images/fasad.jpg') 0 0 no-repeat;
+		background: url('../images/tower3.jpg') 0 0 no-repeat;
 		background-size: cover;
 	}
 	
@@ -66,6 +67,9 @@ section.intro {
 		  transition: opacity 0.2s;
 		}
 	}
+  @include susy-media(60em) {
+    
+  }
 	
 	.container {
 		@include susy-media(30em) {

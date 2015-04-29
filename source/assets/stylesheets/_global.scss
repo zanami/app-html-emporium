@@ -49,6 +49,7 @@ section {
 .image-bg {
 	background: url('../images/fasad.jpg') 0 0 no-repeat;
 	background-size: cover;
+  background-attachment: fixed;
 }
 
 .color-overlay {
@@ -57,8 +58,9 @@ section {
   width: 100%;
   top: 0;
   left: 0;
-  background-color: darken($accent-color, 18%);
-  opacity: 0.7;
+///  background-color: darken($accent-color, 18%);
+  background-color: #000;
+  opacity: 0.5;
   z-index: -100;
 }
 
