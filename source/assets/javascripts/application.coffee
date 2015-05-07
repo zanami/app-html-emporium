@@ -81,6 +81,11 @@ $("#quote-slider").owlCarousel({
      autoplay: true,
      nav: false,
      dots: true,
+     autoplayTimeout: 6000,
+     autoplayHoverPause: true,
+     smartSpeed: 300,
+     fluidSpeed: true,
+     
      });
 
 # modals
