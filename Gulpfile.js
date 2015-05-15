@@ -28,6 +28,8 @@ gulp.task('views', function () {
   gulp.src(paths.haml)
     .pipe(haml())
     .pipe(gulp.dest('./build'));
+  gulp.src('./source/views/CNAME')
+    .pipe(gulp.dest('./build'));
 });
 
 // Scss stylesheets
