@@ -11,8 +11,8 @@ var gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   coffee = require('gulp-coffee'),
   deploy = require('gulp-gh-pages');
-	var uglify = require('gulp-uglify');
-	var rename = require('gulp-rename');
+  var uglify = require('gulp-uglify');
+  var rename = require('gulp-rename');
 
 var paths = {
   haml: './source/views/*.haml',
@@ -116,6 +116,6 @@ gulp.task('default', ['views', 'stylesheets', 'javascripts', 'coffeescripts', 'i
 gulp.task('deploy', function () {
   return gulp.src("./build/**/*")
     .pipe(deploy({
-      branch: "master"
+      branch: "gh-pages"
     }));
 });
