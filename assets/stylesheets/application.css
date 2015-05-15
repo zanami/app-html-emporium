@@ -1292,6 +1292,9 @@ footer {
   .sliding-panel-button img {
     height: 1.3em; }
 
+section.error404 {
+  text-align: center; }
+
 section.intro {
   color: white;
   height: 100%;
